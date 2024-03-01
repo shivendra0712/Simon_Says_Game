@@ -6,6 +6,8 @@ body{
 h1{
     text-decoration: underline;
 }
+
+/* on div box add styling */
 .btn{
  height: 150px;
  width: 150px;
@@ -55,7 +57,10 @@ background-color: #f99b45;
   .virtual-key.clicked {
     background-color: black;
   }
-  
+
+
+  /* spacebar */
+
   .spacebar {
     display: flex;
     flex-direction: row;
