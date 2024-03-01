@@ -1,6 +1,8 @@
+// The DOMContentLoaded event fires when the HTML document has been completely parsed
+
 document.addEventListener("DOMContentLoaded", function () {
     const virtualSpacebar = document.getElementById("virtual-spacebar");
-  
+   
     // Initialize game variables
     let gameSeq = [];
     let userSeq = [];
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let h2 = document.querySelector("h2");
     let allBtns = document.querySelectorAll(".btn");
   
-    // Event listener to start the game on spacebar press
+    // Event listener to start the game on spacebar press then call the startGame function
     virtualSpacebar.addEventListener("click", startGame);
     document.addEventListener("keydown", function (event) {
       if (!started && (event.key === " " || event.key === "Spacebar")) {
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   
+
+    //check startGame or not when game is started then call the levelUp function.
     function startGame() {
       if (!started) {
         console.log("Game is started");
@@ -28,16 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
         virtualSpacebar.style.boxShadow = "none";
         virtualSpacebar.style.transition = "transform 500ms ease-in-out";
         virtualSpacebar.style.transform = "translate(5px, 5px)";
-        levelUp();
+        levelUp();   // call the levelUp function.
       }
     }
   
-    // Event listener for button click
+    // Event listener for button click then callback btnPress function 
     for (let btn of allBtns) {
-      btn.addEventListener("click", btnPress);
+      btn.addEventListener("click", btnPress); // callback btnPress function 
     }
   
-    // Flash effect for game buttons
+    // Flash effect for game buttons then add flash style class then button color white changes. 
+    // and setTimeout remove flash style class and button color change for few seconds.
     function gameFlash(btn) {
       btn.classList.add("flash");
       setTimeout(function () {
@@ -45,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 250);
     }
   
-    // Flash effect for user-selected buttons
+    // Flash effect for user-selected buttons then add flash style class then button color green changes. 
+    // and setTimeout remove flash style class and button color change for few seconds.
     function userFlash(btn) {
       btn.classList.add("userFlash");
       setTimeout(function () {
@@ -54,6 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Level up and generate new sequence
+    // userSeq start from empty array and level increase , change heading 2 content and there show level .
+    // generate a random number between 0-3 that help find out color 
+    // when level up then gameSeq push color and call gameFlash function
+
     function levelUp() {
       userSeq = [];
       level++;
@@ -66,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Check user's button press and sequence
+    // check userSeq and gameSeq is equal then again check  userSeq and gameSeq  length is equal then call the levelup function  
+    // wrong sequence press then else contion execute.
     function btnPress() {
       let btn = this;
       userFlash(btn);
@@ -76,7 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(levelUp, 600);
           }
         } else {
-          // Play game over sound
+          // when user press wrong sequence then Play game over sound and upon the screen show Game Over!
+          // Your score was high score and press space to restart the game
+
           const gameOverSound = document.getElementById("gameOverSound");
           gameOverSound.play();
           highScore = checkHighScore(level);
@@ -89,13 +103,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
   
-      userColor = btn.getAttribute("id");
-      userSeq.push(userColor);
+      userColor = btn.getAttribute("id"); //find out the color 
+      userSeq.push(userColor); // push userSeq to add color.
   
-      checkAns(userSeq.length - 1);
+      checkAns(userSeq.length - 1); // call checkAns function 
     }
   
     // Check and update high score
+
     function checkHighScore(score) {
       if (score > highScore) {
         highScore = score;
@@ -104,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     // Reset game state
+    // started value false ,gameSeq and userSeq is empty 
+    // again level start from 0.
     function reset() {
       started = false;
       gameSeq = [];
