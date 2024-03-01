@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>Simon Says Game</h1>
-    <h2>Press any key to start the game</h2>
+    <h2>Rule: Press the buttons in the right order<br>Press Spacebar to start</h2>
+    <!--  added boxes -->
     <div class="btn-container">
         <div class="line-one">
             <div class="btn red" type="button" id="red">1</div>
@@ -19,18 +20,20 @@
             <div class="btn purple" type="button" id="purple">4</div>
         </div>
     </div>
-    
+    <!--  added spacebar -->
     <div  class="spacebar">
     <button class="virtual-key" id="virtual-spacebar" type="button">
         <a>Spacebar</a>
       </button>
     </div>
 
- <div class="credits">
+    <!--  added my name and linkedin link -->
+    <div class="credits">
         <a> Made by: Shivendra Patel - </a>
         <a href="https://www.linkedin.com/in/shivendra-patel-31845b212/">Linkedin</a>
     </div>
     <script src="script.js"></script>
+    <!-- added mp3 player for gameOverSound -->
     <audio id="gameOverSound" volume="1000" src="Buzzer.mp3"></audio>
 </body>
 </html>
